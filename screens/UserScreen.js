@@ -1,18 +1,19 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {Text, View} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {GlobalStyles} from '../constants/styles';
 
-const CountriesScreen = () => {
+const UserScreen = () => {
   return (
     <View style={styles.outerWrapper}>
-      <View style={styles.innerWrapper}>
-        <Text>Countries ss</Text>
+      <View style={styles.inner}>
+        <Text>User</Text>
       </View>
     </View>
   );
 };
 
-export default CountriesScreen;
+export default UserScreen;
 
 const styles = StyleSheet.create({
   outerWrapper: {
@@ -21,5 +22,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: GlobalStyles.colors.CambridgeBlueLighter,
   },
-  innerWrapper: {width: 90},
+  innerWrapper: {width: '95%'},
 });
