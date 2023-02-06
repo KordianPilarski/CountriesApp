@@ -1,10 +1,10 @@
 import React from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
+import Divider from '../components/ui/Divider';
 import {GlobalStyles} from '../constants/styles';
 
 const CountryScreen = ({route}) => {
   const country = route.params.country;
-  console.log(country);
 
   if (!country) {
     return <Text>Somenthing went wrong with your country</Text>;
@@ -18,23 +18,19 @@ const CountryScreen = ({route}) => {
           <Text style={styles.name}>{country.name}</Text>
           <Text style={styles.officialName}>{country.officialName}</Text>
         </View>
-        <View style={styles.dividerWrapper}>
-          <View style={styles.line} />
-          <View>
-            <Text style={styles.aboutTxt}>About</Text>
-          </View>
-          <View style={styles.line} />
-        </View>
+        <Divider>About</Divider>
         <View style={styles.aboutItem}>
           <Text style={styles.title}>Capital:</Text>
           <Text style={styles.value}>{country.capital}</Text>
         </View>
         <View style={styles.aboutItem}>
           <Text style={styles.title}>Population:</Text>
-          <Text style={styles.value}>{`${country.population} people`}</Text>
+          <Text style={styles.value}>{`${country.population.toLocaleString(
+            'en-US',
+          )} people`}</Text>
         </View>
         <View style={styles.aboutItem}>
-          <Text style={styles.title}>Region;</Text>
+          <Text style={styles.title}>Region:</Text>
           <Text style={styles.value}>{country.region}</Text>
         </View>
         <View style={styles.aboutItem}>
@@ -89,10 +85,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   officialName: {fontSize: 18, alignSelf: 'center'},
-  dividerWrapper: {flexDirection: 'row', alignItems: 'center', width: '95%'},
   marginVertical: 8,
-  line: {flex: 1, height: 1, backgroundColor: 'black', marginVertical: 20},
-  aboutTxt: {width: 50, textAlign: 'center'},
   aboutItem: {
     flex: 1,
     width: '100%',

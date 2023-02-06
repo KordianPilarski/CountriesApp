@@ -1,5 +1,5 @@
-import React, {useContext, useEffect, useState} from 'react';
-import {FlatList, StyleSheet, Text, View} from 'react-native';
+import React, {useContext} from 'react';
+import {FlatList, StyleSheet, View} from 'react-native';
 import CountryGrid from '../components/CountryGrid';
 import {GlobalStyles} from '../constants/styles';
 

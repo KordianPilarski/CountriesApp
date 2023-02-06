@@ -1,13 +1,14 @@
 import React from 'react';
 import {Text, View} from 'react-native';
 import {StyleSheet} from 'react-native';
+import Title from '../components/ui/Title';
 import {GlobalStyles} from '../constants/styles';
 
 const UserScreen = () => {
   return (
     <View style={styles.outerWrapper}>
       <View style={styles.inner}>
-        <Text>User</Text>
+        <Title>User Profile</Title>
       </View>
     </View>
   );
