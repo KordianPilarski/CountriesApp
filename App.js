@@ -10,6 +10,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import CountriesScreen from './screens/CountriesScreen';
 import QuizScreen from './screens/QuizScreen';
 import UserScreen from './screens/UserScreen';
+import CountryScreen from './screens/CountryScreen';
 
 const BottomTabs = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -22,6 +23,17 @@ const StackNavigator = () => {
         component={CountriesScreen}
         options={{
           headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="Country Screen"
+        component={CountryScreen}
+        options={{
+          headerTintColor: GlobalStyles.colors.MiddnightGreenEagleGreen,
+          title: 'Country',
+          headerStyle: {
+            backgroundColor: GlobalStyles.colors.CambridgeBlue,
+          },
         }}
       />
     </Stack.Navigator>

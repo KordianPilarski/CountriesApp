@@ -3,16 +3,19 @@ import {FlatList, StyleSheet, Text, View} from 'react-native';
 import CountryGrid from '../components/CountryGrid';
 import {GlobalStyles} from '../constants/styles';
 
-import {COUNTRIES} from '../data/dummy-data';
 import {CountriesContext} from '../store/countries-context';
 
-const CountriesScreen = () => {
+const CountriesScreen = ({navigation}) => {
   const countriesCtx = useContext(CountriesContext);
 
   const renderCountryItem = itemData => {
     const country = itemData.item;
 
-    return <CountryGrid country={country} />;
+    const pressHandler = () => {
+      navigation.navigate('Country Screen', {country});
+    };
+
+    return <CountryGrid country={country} onPress={pressHandler} />;
   };
 
   return (

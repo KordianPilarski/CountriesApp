@@ -26,13 +26,11 @@ const CountriesContextProvider = ({children}) => {
           languages: country.languages,
           flag: country.flags.png,
           population: country.population,
+          currencies: country.currencies,
         }));
         setCountries(newCountries);
-        console.log(newCountries);
       });
   }, []);
-
-  console.log(countries);
 
   const getCountry = id => {
     return countries.find(country => country.id === id);

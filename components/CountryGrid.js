@@ -5,12 +5,11 @@ import {
   Text,
   StyleSheet,
   Platform,
-  Image,
   ImageBackground,
 } from 'react-native';
 import {GlobalStyles} from '../constants/styles';
 
-const CountryGrid = ({country}) => {
+const CountryGrid = ({country, onPress}) => {
   return (
     <View style={styles.gridItem}>
       <Pressable
@@ -18,7 +17,8 @@ const CountryGrid = ({country}) => {
         style={({pressed}) => [
           styles.button,
           pressed ? styles.buttonPressed : '',
-        ]}>
+        ]}
+        onPress={onPress}>
         <ImageBackground
           style={styles.backgroundImage}
           source={{uri: country.flag}}
