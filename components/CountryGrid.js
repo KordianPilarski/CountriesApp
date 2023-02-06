@@ -21,11 +21,11 @@ const CountryGrid = ({country}) => {
         ]}>
         <ImageBackground
           style={styles.backgroundImage}
-          source={{uri: country.flags.png}}
+          source={{uri: country.flag}}
         />
-        <View style={styles.innerCountainer}>
-          <Text style={styles.commonName}>{country.name.common}</Text>
-          <Text>{country.name.official}</Text>
+        <View style={styles.innerContainer}>
+          <Text style={styles.commonName}>{country.name}</Text>
+          <Text style={styles.officialName}>{country.officialName}</Text>
         </View>
       </Pressable>
     </View>
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
   buttonPressed: {
     opacity: 0.5,
   },
-  innerCountainer: {
+  innerContainer: {
     flex: 1,
     padding: 8,
     alignItems: 'center',
@@ -65,7 +65,10 @@ const styles = StyleSheet.create({
   },
   commonName: {
     fontWeight: 'bold',
-    fontSize: 20,
-    marginBottom: 4,
+    fontSize: 16,
+    // marginBottom: 2,
+  },
+  officialName: {
+    fontSize: 12,
   },
 });
