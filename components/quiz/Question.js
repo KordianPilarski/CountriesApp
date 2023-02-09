@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {TextInput} from 'react-native';
 import {StyleSheet, Text, View} from 'react-native';
 import {GlobalStyles} from '../../constants/styles';
@@ -27,8 +27,8 @@ export default Question;
 
 const styles = StyleSheet.create({
   questionWrapper: {
-    marginVertical: 16,
-    padding: 16,
+    marginVertical: 10,
+    padding: 12,
     backgroundColor: GlobalStyles.colors.CambridgeBlue,
     borderRadius: 8,
     elevation: 4,
@@ -40,10 +40,11 @@ const styles = StyleSheet.create({
   },
   question: {
     fontSize: 16,
-    paddingVertical: 8,
+    paddingVertical: 4,
   },
   textInput: {
     backgroundColor: GlobalStyles.colors.CambridgeBlueLighter,
     borderRadius: 4,
+    padding: 4,
   },
 });
