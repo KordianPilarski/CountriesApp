@@ -34,7 +34,11 @@ const CountryScreen = ({route}) => {
           <Text style={styles.value}>{country.region}</Text>
         </View>
         <View style={styles.aboutItem}>
-          <Text style={styles.title}>Languages:</Text>
+          <Text style={styles.title}>
+            {Object.keys(country.languages).length > 1
+              ? 'Languages:'
+              : 'Language:'}
+          </Text>
           {Object.entries(country.languages).map(([key, value]) => {
             return (
               <Text style={styles.value} key={key}>

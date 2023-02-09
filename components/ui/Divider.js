@@ -17,7 +17,7 @@ const Divider = ({children}) => {
 export default Divider;
 
 const styles = StyleSheet.create({
-  dividerWrapper: {flexDirection: 'row', alignItems: 'center', width: '95%'},
+  dividerWrapper: {flexDirection: 'row', alignItems: 'center', width: '90%'},
   line: {flex: 1, height: 1, backgroundColor: 'black', marginVertical: 20},
   text: {width: 100, textAlign: 'center'},
 });

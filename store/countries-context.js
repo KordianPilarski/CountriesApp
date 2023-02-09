@@ -1,8 +1,6 @@
 import {createContext, useEffect} from 'react';
 import {useState} from 'react';
 
-const axios = require('axios');
-
 export const CountriesContext = createContext({
   countries: [],
   getCountries: () => {},
@@ -38,7 +36,6 @@ const CountriesContextProvider = ({children}) => {
 
   const getRandomCountry = () => {
     const countriesLength = countries.length;
-    console.log(countriesLength);
     const randomNum = Math.floor(Math.random() * countriesLength) + 1;
     const randomCountry = countries[randomNum];
     return randomCountry;

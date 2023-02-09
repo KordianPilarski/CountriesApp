@@ -1,14 +1,32 @@
-import React from 'react';
-import {Text, View} from 'react-native';
+import React, {useContext} from 'react';
+import {Button, Text, View} from 'react-native';
 import {StyleSheet} from 'react-native';
 import Title from '../components/ui/Title';
 import {GlobalStyles} from '../constants/styles';
+import {UserContext} from '../store/user-context';
 
 const UserScreen = () => {
+  const userCtx = useContext(UserContext);
+
+  const handleLogout = () => {
+    userCtx.logout();
+  };
+
   return (
     <View style={styles.outerWrapper}>
-      <View style={styles.inner}>
+      <View style={styles.innerWrapper}>
         <Title>User Profile</Title>
+        <View style={styles.userWrapper}>
+          <Text style={styles.text}>Email: email@email.com</Text>
+          <Text style={styles.text}>Points: 94</Text>
+        </View>
+        <View style={styles.buttonWrapper}>
+          <Button
+            title="Logout"
+            onPress={handleLogout}
+            color={GlobalStyles.colors.MyrtleGreen}
+          />
+        </View>
       </View>
     </View>
   );
@@ -23,5 +41,26 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: GlobalStyles.colors.CambridgeBlueLighter,
   },
-  innerWrapper: {width: '95%'},
+  innerWrapper: {
+    width: '70%',
+    height: '50%',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    backgroundColor: GlobalStyles.colors.CambridgeBlue,
+    borderRadius: 8,
+    elevation: 4,
+    shadowColor: 'black',
+    shadowOpacity: 0.25,
+    shadowOffset: {width: 0, height: 0},
+    shadowRadius: 8,
+    overflow: Platform.OS === 'android' ? 'hidden' : 'visible',
+  },
+  buttonWrapper: {
+    width: 150,
+  },
+  text: {
+    fontSize: 16,
+    color: GlobalStyles.colors.CambridgeBlueLighter,
+    fontWeight: 'bold',
+  },
 });

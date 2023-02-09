@@ -66,7 +66,6 @@ const styles = StyleSheet.create({
   commonName: {
     fontWeight: 'bold',
     fontSize: 16,
-    // marginBottom: 2,
   },
   officialName: {
     fontSize: 12,
