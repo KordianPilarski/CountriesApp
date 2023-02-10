@@ -1,5 +1,6 @@
 import {createContext, useEffect} from 'react';
 import {useState} from 'react';
+import axios from 'axios';
 
 export const CountriesContext = createContext({
   countries: [],
@@ -12,22 +13,19 @@ const CountriesContextProvider = ({children}) => {
   const [countries, setCountries] = useState([]);
 
   useEffect(() => {
-    fetch('https://restcountries.com/v3.1/region/europe')
-      .then(res => res.json())
-      .then(data => {
-        const newCountries = data.map(country => ({
-          id: country.cca2,
-          name: country.name.common,
-          officialName: country.name.official,
-          capital: country.capital,
-          region: country.region,
-          languages: country.languages,
-          flag: country.flags.png,
-          population: country.population,
-          currencies: country.currencies,
-        }));
-        setCountries(newCountries);
-      });
+    axios('https://restcountries.com/v3.1/region/europe').then(res => {
+      const newCountries = res.data.map(country => ({
+        id: country.cca2,
+        name: country.name.common,
+        officialName: country.name.official,
+        capital: country.capital,
+        region: country.region,
+        languages: country.languages,
+        flag: country.flags.png,
+        population: country.population,
+      }));
+      setCountries(newCountries);
+    });
   }, []);
 
   const getCountry = id => {
