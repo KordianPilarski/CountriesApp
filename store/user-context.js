@@ -8,7 +8,7 @@ export const UserContext = createContext({
 });
 
 const UserContextProvider = ({children}) => {
-  const [authToken, setAuthToken] = useState('asd');
+  const [authToken, setAuthToken] = useState();
 
   const authenticate = token => {
     setAuthToken(token);

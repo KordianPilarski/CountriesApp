@@ -24,16 +24,14 @@ const QuizScreen = () => {
   //   'What is the official name?',
   // ];
 
-  const renderCountryButton = itemData => {
-    const country = itemData.item;
-
+  const renderCountryButton = country => {
     const onPressHandle = () => {
       const selectedCountry = CountriesCtx.getCountry(country.id);
       setSelectedCountry(selectedCountry);
     };
 
     return (
-      <View style={styles.buttonWrapper}>
+      <View style={styles.chooseCountryButtonWrapper} key={country.id}>
         <Button
           color={GlobalStyles.colors.MyrtleGreen}
           title={country.name}
@@ -75,74 +73,71 @@ const QuizScreen = () => {
     setScore(0);
     setShowScore(false);
   };
-  console.log(selectedCountry);
-  console.log(firstInputValue);
-  console.log(secondInputValue);
 
-  return (
-    <View style={styles.outerWrapper}>
-      {selectedCountry ? (
-        <ScrollView>
-          <View style={styles.innerWrapper}>
-            <Title>Your choice: </Title>
-            <View style={styles.chosenCountryWrapper}>
-              <Text style={styles.countryName}>{selectedCountry.name}</Text>
-              <Image
-                style={styles.countryImage}
-                source={{uri: selectedCountry.flag}}
-              />
-            </View>
-            <Divider>Questions:</Divider>
-            <View style={styles.bottomPartWrapper}>
-              <View style={styles.questionsWrapper}>
-                <Question
-                  question={`What is the capital city of ${selectedCountry.name}?`}
-                  answer={selectedCountry.capital}
-                  inputValue={firstInputValue}
-                  setInputValue={setFirstInputValue}
-                />
-                <Question
-                  question={`What is the official name of ${selectedCountry.name}?`}
-                  answer={selectedCountry.officialName}
-                  inputValue={secondInputValue}
-                  setInputValue={setSecondInputValue}
-                />
-              </View>
-              {showScore && <Answers score={score} numOfQuestions={2} />}
-              <View style={styles.countryButtonsWrapper}>
-                <View style={styles.bottomButtonWrapper}>
-                  <Button
-                    title="Back"
-                    onPress={handleBackButtonPress}
-                    color={GlobalStyles.colors.MyrtleGreen}
-                  />
-                </View>
-                <View style={styles.bottomButtonWrapper}>
-                  <Button
-                    title={!showScore ? 'Check answers' : 'Play Again'}
-                    color={GlobalStyles.colors.MyrtleGreen}
-                    onPress={
-                      !showScore ? onCheckAnswersButtonPress : onPlayAgainPress
-                    }
-                  />
-                </View>
-              </View>
-            </View>
+  const selectedCountryScreen = (
+    <View style={styles.innerWrapper}>
+      <Title>Your choice: </Title>
+      <View style={styles.chosenCountryWrapper}>
+        <Text style={styles.countryName}>{selectedCountry.name}</Text>
+        <Image
+          style={styles.countryImage}
+          source={{uri: selectedCountry.flag}}
+        />
+      </View>
+      <Divider>Questions:</Divider>
+      <View style={styles.bottomPartWrapper}>
+        <View style={styles.questionsWrapper}>
+          <Question
+            question={`What is the capital city of ${selectedCountry.name}?`}
+            answer={selectedCountry.capital}
+            inputValue={firstInputValue}
+            setInputValue={setFirstInputValue}
+          />
+          <Question
+            question={`What is the official name of ${selectedCountry.name}?`}
+            answer={selectedCountry.officialName}
+            inputValue={secondInputValue}
+            setInputValue={setSecondInputValue}
+          />
+        </View>
+        {showScore && <Answers score={score} numOfQuestions={2} />}
+        <View style={styles.countryButtonsWrapper}>
+          <View style={styles.bottomButtonWrapper}>
+            <Button
+              title="Back"
+              onPress={handleBackButtonPress}
+              color={GlobalStyles.colors.MyrtleGreen}
+            />
           </View>
-        </ScrollView>
-      ) : (
-        <View style={styles.innerWrapper}>
-          <Title>Choose your Country</Title>
-          <View style={styles.buttonsWrapper}>
-            <FlatList
-              data={countries}
-              renderItem={renderCountryButton}
-              keyExtractor={country => country.id}
+          <View style={styles.bottomButtonWrapper}>
+            <Button
+              title={!showScore ? 'Check answers' : 'Play Again'}
+              color={GlobalStyles.colors.MyrtleGreen}
+              onPress={
+                !showScore ? onCheckAnswersButtonPress : onPlayAgainPress
+              }
             />
           </View>
         </View>
-      )}
+      </View>
     </View>
+  );
+
+  const selectCountryScreen = (
+    <>
+      <Title>Choose your Country</Title>
+      <View style={styles.chooseCountryButtonsWrapper}>
+        {countries.map(country => renderCountryButton(country))}
+      </View>
+    </>
+  );
+
+  return (
+    <ScrollView>
+      <View style={styles.outerWrapper}>
+        {selectedCountry ? selectedCountryScreen : selectCountryScreen}
+      </View>
+    </ScrollView>
   );
 };
 
@@ -154,24 +149,24 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  innerWrapper: {
+  innerChooseCountryWrapper: {},
+  chooseCountryButtonsWrapper: {
     flex: 1,
     width: '100%',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
     backgroundColor: GlobalStyles.colors.CambridgeBlueLighter,
-    alignItems: 'center',
-    paddingBottom: 16,
   },
-  buttonsWrapper: {
-    flex: 1,
-    width: '100%',
-    alignItems: 'center',
+  chooseCountryButtonWrapper: {
+    width: '43%',
+    padding: 2,
   },
-  buttonWrapper: {
-    width: '100%',
-    paddingVertical: 3,
-    borderRadius: 8,
+  innerWrapper: {
+    alignItems: 'center',
   },
   chosenCountryWrapper: {
+    flex: 1,
     width: '100%',
     height: 150,
     flexDirection: 'row',
@@ -181,7 +176,6 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     paddingLeft: 6,
   },
-
   countryName: {
     flex: 1,
     fontSize: 32,
@@ -193,21 +187,16 @@ const styles = StyleSheet.create({
   bottomPartWrapper: {
     flex: 1,
     width: '90%',
-    justifyContent: 'space-between',
     alignItems: 'center',
     paddingBottom: 32,
   },
-  questionsWrapper: {
-    flex: 1,
-    width: '100%',
-    justifyContent: 'space-between',
-  },
+
   countryButtonsWrapper: {
-    width: '100%',
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    gap: 15,
   },
   bottomButtonWrapper: {
-    width: 160,
+    marginTop: 8,
+    width: 140,
   },
 });

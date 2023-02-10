@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
   answersWrapper: {
     marginVertical: 10,
     padding: 12,
-    width: '100%',
+    width: 200,
     backgroundColor: GlobalStyles.colors.MiddnightGreenEagleGreen,
     borderRadius: 8,
     elevation: 4,

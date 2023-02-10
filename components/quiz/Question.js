@@ -4,10 +4,6 @@ import {StyleSheet, Text, View} from 'react-native';
 import {GlobalStyles} from '../../constants/styles';
 
 const Question = ({question, inputValue, setInputValue}) => {
-  // const [inputValue, setInputValue] = useState();
-  // console.log(question);
-  // console.log(inputValue);
-
   return (
     <View style={styles.questionWrapper}>
       <Text style={styles.question}> {question}</Text>
