@@ -9,10 +9,12 @@ import Divider from '../components/ui/Divider';
 import Question from '../components/quiz/Question';
 import Answers from '../components/quiz/Answers';
 import {Alert} from 'react-native';
+import {UserContext} from '../store/user-context';
 
 const QuizScreen = () => {
   const CountriesCtx = useContext(CountriesContext);
   const countries = CountriesCtx.countries;
+  const userCtx = useContext(UserContext);
   const [selectedCountry, setSelectedCountry] = useState('');
   const [firstInputValue, setFirstInputValue] = useState();
   const [secondInputValue, setSecondInputValue] = useState();
@@ -49,18 +51,21 @@ const QuizScreen = () => {
 
   const onCheckAnswersButtonPress = () => {
     if (firstInputValue && secondInputValue) {
+      let score = 0;
+
       if (firstInputValue === selectedCountry.capital.toString()) {
         console.log('równe capital');
-        setScore(prevScore => prevScore + 1);
+        score++;
       }
       if (secondInputValue === selectedCountry.officialName) {
         console.log('równe official name');
-        setScore(prevScore => prevScore + 1);
+        score++;
       }
-      console.log(score);
       setShowScore(true);
+      setScore(score);
       setFirstInputValue('');
       setSecondInputValue('');
+      userCtx.addPlayedGame(score, 2);
     } else {
       Alert.alert(
         'Please add your answers.',

@@ -12,13 +12,22 @@ const UserScreen = () => {
     userCtx.logout();
   };
 
+  const {fullScore, numOfGames, numOfQuestionsAnswered} = userCtx.games;
+
   return (
     <View style={styles.outerWrapper}>
       <View style={styles.innerWrapper}>
         <Title>User Profile</Title>
-        <View style={styles.userWrapper}>
+        <View>
           <Text style={styles.text}>Email: email@email.com</Text>
-          <Text style={styles.text}>Points: 94</Text>
+          <Text
+            style={
+              styles.text
+            }>{`Points earned: ${fullScore}/${numOfQuestionsAnswered}`}</Text>
+          <Text style={styles.text}>{`Games played: ${numOfGames}`}</Text>
+          <Text style={styles.text}>
+            Good answers percentage {fullScore / numOfQuestionsAnswered}
+          </Text>
         </View>
         <View style={styles.buttonWrapper}>
           <Button
