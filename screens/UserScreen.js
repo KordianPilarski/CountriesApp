@@ -1,6 +1,7 @@
 import React, {useContext} from 'react';
-import {Button, Text, View} from 'react-native';
-import {StyleSheet} from 'react-native';
+import {Button, Text, View, StyleSheet} from 'react-native';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+
 import Title from '../components/ui/Title';
 import {GlobalStyles} from '../constants/styles';
 import {UserContext} from '../store/user-context';
@@ -22,7 +23,14 @@ const UserScreen = () => {
   return (
     <View style={styles.outerWrapper}>
       <View style={styles.innerWrapper}>
-        <Title>User Profile</Title>
+        <View style={styles.headingWrapper}>
+          <Title>User Profile</Title>
+          <MaterialCommunityIcons
+            name="account"
+            size={64}
+            color={GlobalStyles.colors.MiddnightGreenEagleGreen}
+          />
+        </View>
         <View>
           <Text style={styles.text}>Email: {userCtx.userEmail}</Text>
           <Text
@@ -68,6 +76,12 @@ const styles = StyleSheet.create({
     shadowOffset: {width: 0, height: 0},
     shadowRadius: 8,
     overflow: Platform.OS === 'android' ? 'hidden' : 'visible',
+  },
+  headingWrapper: {
+    width: '80%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-around',
   },
   buttonWrapper: {
     width: 150,

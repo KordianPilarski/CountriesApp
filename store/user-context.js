@@ -34,8 +34,6 @@ const UserContextProvider = ({children}) => {
     });
   };
 
-  console.log(games);
-
   const addPlayedGame = (score, numOfQuestions) => {
     setGames({
       ...games,
@@ -47,12 +45,12 @@ const UserContextProvider = ({children}) => {
 
   const value = {
     token: authToken,
-    userEmail: userEmail,
+    userEmail,
     isLoggedIn: !!authToken,
-    games: games,
-    authenticate: authenticate,
-    logout: logout,
-    addPlayedGame: addPlayedGame,
+    games,
+    authenticate,
+    logout,
+    addPlayedGame,
   };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;

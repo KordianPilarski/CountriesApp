@@ -1,14 +1,14 @@
 import React, {useContext, useState} from 'react';
-import {FlatList, Image, Text, View, ScrollView} from 'react-native';
+import {Image, Text, View, ScrollView, Alert} from 'react-native';
 import {StyleSheet} from 'react-native';
 import {Button} from 'react-native';
+
 import Title from '../components/ui/Title';
 import {GlobalStyles} from '../constants/styles';
 import {CountriesContext} from '../store/countries-context';
 import Divider from '../components/ui/Divider';
 import Question from '../components/quiz/Question';
 import Answers from '../components/quiz/Answers';
-import {Alert} from 'react-native';
 import {UserContext} from '../store/user-context';
 
 const QuizScreen = () => {
@@ -57,14 +57,12 @@ const QuizScreen = () => {
         firstInputValue.toLowerCase() ===
         selectedCountry.capital.toString().toLowerCase()
       ) {
-        console.log('równe capital');
         score++;
       }
       if (
         secondInputValue.toLowerCase() ===
         selectedCountry.officialName.toLowerCase()
       ) {
-        console.log('równe official name');
         score++;
       }
       setShowScore(true);
@@ -160,17 +158,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  innerChooseCountryWrapper: {},
   chooseCountryButtonsWrapper: {
     flex: 1,
-    width: '100%',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
+    flexDirection: 'column',
     backgroundColor: GlobalStyles.colors.CambridgeBlueLighter,
+    marginBottom: 20,
   },
   chooseCountryButtonWrapper: {
-    width: '43%',
+    flex: 1,
     padding: 2,
   },
   innerWrapper: {
@@ -201,7 +196,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingBottom: 32,
   },
-
   countryButtonsWrapper: {
     flexDirection: 'row',
     gap: 15,
