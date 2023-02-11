@@ -14,19 +14,24 @@ const UserScreen = () => {
 
   const {fullScore, numOfGames, numOfQuestionsAnswered} = userCtx.games;
 
+  const goodAnswersPercentage =
+    fullScore / numOfQuestionsAnswered
+      ? (fullScore / numOfQuestionsAnswered).toFixed(2) * 100
+      : 0;
+
   return (
     <View style={styles.outerWrapper}>
       <View style={styles.innerWrapper}>
         <Title>User Profile</Title>
         <View>
-          <Text style={styles.text}>Email: email@email.com</Text>
+          <Text style={styles.text}>Email: {userCtx.userEmail}</Text>
           <Text
             style={
               styles.text
             }>{`Points earned: ${fullScore}/${numOfQuestionsAnswered}`}</Text>
           <Text style={styles.text}>{`Games played: ${numOfGames}`}</Text>
           <Text style={styles.text}>
-            Good answers percentage {fullScore / numOfQuestionsAnswered}
+            Good answers percentage - {goodAnswersPercentage}%
           </Text>
         </View>
         <View style={styles.buttonWrapper}>

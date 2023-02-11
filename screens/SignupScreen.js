@@ -14,7 +14,7 @@ const SignupScreen = () => {
     setIsAuthenticating(true);
     try {
       const token = await createUser(email, password);
-      userCtx.authenticate(token);
+      userCtx.authenticate(token, email);
     } catch (err) {
       Alert.alert('Authentication failed.', 'Please check your data');
       setIsAuthenticating(false);

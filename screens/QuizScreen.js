@@ -53,11 +53,17 @@ const QuizScreen = () => {
     if (firstInputValue && secondInputValue) {
       let score = 0;
 
-      if (firstInputValue === selectedCountry.capital.toString()) {
+      if (
+        firstInputValue.toLowerCase() ===
+        selectedCountry.capital.toString().toLowerCase()
+      ) {
         console.log('równe capital');
         score++;
       }
-      if (secondInputValue === selectedCountry.officialName) {
+      if (
+        secondInputValue.toLowerCase() ===
+        selectedCountry.officialName.toLowerCase()
+      ) {
         console.log('równe official name');
         score++;
       }

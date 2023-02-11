@@ -3,6 +3,7 @@ import {createContext, useState} from 'react';
 export const UserContext = createContext({
   isLoggedIn: false,
   token: '',
+  userEmail: '',
   authenticate: () => {},
   logout: () => {},
   games: {},
@@ -10,19 +11,27 @@ export const UserContext = createContext({
 });
 
 const UserContextProvider = ({children}) => {
-  const [authToken, setAuthToken] = useState(true);
+  const [authToken, setAuthToken] = useState();
+  const [userEmail, setUserEmail] = useState();
   const [games, setGames] = useState({
     fullScore: 0,
     numOfGames: 0,
     numOfQuestionsAnswered: 0,
   });
 
-  const authenticate = token => {
+  const authenticate = (token, email) => {
     setAuthToken(token);
+    setUserEmail(email);
   };
 
   const logout = () => {
     setAuthToken(false);
+    setGames({
+      ...games,
+      fullScore: 0,
+      numOfGames: 0,
+      numOfQuestionsAnswered: 0,
+    });
   };
 
   console.log(games);
@@ -38,11 +47,12 @@ const UserContextProvider = ({children}) => {
 
   const value = {
     token: authToken,
+    userEmail: userEmail,
     isLoggedIn: !!authToken,
+    games: games,
     authenticate: authenticate,
     logout: logout,
     addPlayedGame: addPlayedGame,
-    games: games,
   };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;

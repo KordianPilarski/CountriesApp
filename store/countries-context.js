@@ -32,6 +32,7 @@ const CountriesContextProvider = ({children}) => {
     return countries.find(country => country.id === id);
   };
 
+  //for later use
   const getRandomCountry = () => {
     const countriesLength = countries.length;
     const randomNum = Math.floor(Math.random() * countriesLength) + 1;

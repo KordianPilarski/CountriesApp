@@ -13,7 +13,7 @@ const LoginScreen = () => {
     setIsAuthenticating(true);
     try {
       const token = await login(email, password);
-      userCtx.authenticate(token);
+      userCtx.authenticate(token, email);
     } catch (err) {
       Alert.alert('Authentication failed.', ' Please check your credentials');
       setIsAuthenticating(false);
